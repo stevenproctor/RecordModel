@@ -20,7 +20,9 @@ module MMDB
 
       @lock = File.open(File.join(@dirname, "lock"), File::RDWR|File::CREAT, 0644)
 
-      raise "Database locked" if not @lock.flock(File::LOCK_EX|File::LOCK_NB)
+      # Removing this as it fixes an error we're encountering.
+      # Note that we do not know if this will have unintended side effects.
+      # raise "Database locked" if not @lock.flock(File::LOCK_EX|File::LOCK_NB)
 
       @commit_log = CommitLog.new(File.join(@dirname, "commit"))
 
