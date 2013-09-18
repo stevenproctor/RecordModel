@@ -518,7 +518,10 @@ private:
 	{
           copy_values_in(data->current, cursor);
 	}
-     
+
+	/*
+	 * Call the iterator
+	 */
         int iter = iterator(data);
         if (iter != ITER_CONTINUE)
         {
@@ -541,7 +544,7 @@ private:
 	   * This only can happen when the initial bin_search positions cursor
 	   * to before "range_from". So in this case, we continue to the next
 	   * record, instead of calling again bin_search (which might lead to
-	   * in infinite loop).
+	   * an infinite loop).
            */
            ++cursor;
            continue;
